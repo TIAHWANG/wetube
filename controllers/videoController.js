@@ -15,11 +15,18 @@ export const home = async (req, res) => {
 
 // Search
 
-export const search = (req, res) => {
-    // const searchingBy = req.query.term;
+export const search = async (req, res) => {
     const {
         query: { term: searchingBy }
     } = req;
+    let videos = [];
+    try {
+        videos = await Video.find({
+            title: { $regex: searchingBy, $options: "i" }
+        });
+    } catch (error) {
+        console.log(error);
+    }
     res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
 
@@ -90,6 +97,8 @@ export const deleteVideo = async (req, res) => {
     } = req;
     try {
         await Video.findOneAndRemove({ _id: id });
-    } catch (error) {}
+    } catch (error) {
+        console.log(error);
+    }
     res.redirect(routes.home);
 };
