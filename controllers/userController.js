@@ -23,7 +23,6 @@ export const postJoin = async (req, res, next) => {
             await User.register(user, password);
             next();
         } catch (error) {
-            console.log(error);
             res.redirect(routes.home);
         }
     }
@@ -113,7 +112,8 @@ export const userDetail = async (req, res) => {
         params: { id }
     } = req;
     try {
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("videos");
+        console.log(user);
         res.render("userDetail", { pageName: "User Detail", user });
     } catch (error) {
         res.redirect(routes.home);

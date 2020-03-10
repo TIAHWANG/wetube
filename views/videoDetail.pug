@@ -1,14 +1,14 @@
-extends layouts/main
+extends layouts/main 
 
 block content
     .video-detail__container
-        .video__player 
+        .video__player
             video(src=`/${video.fileUrl}`, controls=true)
         .video__info
             if video.creator.id === loggedUser.id
                 a(href=routes.editVideo(video.id)) 
                     button Edit Video
-            h5.video__title=video.title
+            h3.video__title=video.title
             p.video__description=video.description
             if video.views === 1
                 span.video__views 1 view

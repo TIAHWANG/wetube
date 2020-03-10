@@ -13,10 +13,12 @@ const UserSchema = new mongoose.Schema({
             ref: "Comment"
         }
     ],
-    videos: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Video"
-    }
+    videos: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Video"
+        }
+    ]
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: "email" });
