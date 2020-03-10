@@ -38,7 +38,7 @@ export const postLogin = passport.authenticate("local", {
     successRedirect: routes.home
 });
 
-// GitHub
+// GitHub Login
 export const githubLogin = passport.authenticate("github");
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
@@ -68,36 +68,33 @@ export const postGithubLogin = (req, res) => {
     res.redirect(routes.home);
 };
 
-// Facebook
-export const facebookLogin = passport.authenticate("facebook");
+// Naver Login
+export const naverLogin = passport.authenticate("naver");
 
-export const facebookLoginCallback = async (_, __, profile, cb) => {
+export const naverLoginCallback = async (_, __, profile, done) => {
     const {
-        _json: { id, name, email }
+        _json: { id, nickname: name, profile_image: avatarUrl, email }
     } = profile;
     try {
         const user = await User.findOne({ email });
         if (user) {
-            user.facebookId = id;
-            user.avatarUrl = `http://graph.facebook.com/${id}/picture?type=large`;
+            user.naverId = id;
             user.save();
-            return cb(null, user);
+            return done(null, user);
         }
         const newUser = await User.create({
+            naverId: id,
             email,
             name,
-            facebookId: id,
-            avatarUrl: `http://graph.facebook.com/${id}/picture?type=large`
+            avatarUrl
         });
-        return cb(null, newUser);
+        return done(null, newUser);
     } catch (error) {
-        return cb(error);
+        return done(error);
     }
 };
 
-export const postFacebookLogin = (req, res) => {
-    res.redirect(routes.home);
-};
+export const postNaverLogin = (req, res) => res.redirect(routes.home);
 
 // Logout
 export const logout = (req, res) => {

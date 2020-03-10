@@ -11,8 +11,8 @@ import {
     githubLogin,
     postGithubLogin,
     getMe,
-    facebookLogin,
-    postFacebookLogin
+    naverLogin,
+    postNaverLogin
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
 
@@ -43,12 +43,12 @@ globalRouter.get(
     postGithubLogin
 );
 
-// Facebook
-globalRouter.get(routes.facebook, facebookLogin);
+// Naver
+globalRouter.get(routes.naver, naverLogin);
 globalRouter.get(
-    routes.facebookCallback,
-    passport.authenticate("facebook", { failureRedirect: routes.login }),
-    postFacebookLogin
+    routes.naverCallback,
+    passport.authenticate("naver", { failureRedirect: routes.login }),
+    postNaverLogin
 );
 
 // Me

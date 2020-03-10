@@ -23,9 +23,9 @@ const DELETE_VIDEO = "/:id/delete";
 const GITHUB = "/auth/github";
 const GITHUB_CALLBACK = "/auth/github/callback";
 
-// Facebook
-const FB = "/auth/facebook";
-const FB_CALLBACK = "/auth/facebook/callback";
+// Naver
+const NAVER = "/auth/naver";
+const NAVER_CALLBACK = "/auth/naver/callback";
 
 const routes = {
     home: HOME,
@@ -69,8 +69,8 @@ const routes = {
     gitHub: GITHUB,
     gitHubCallback: GITHUB_CALLBACK,
     me: ME,
-    facebook: FB,
-    facebookCallback: FB_CALLBACK
+    naver: NAVER,
+    naverCallback: NAVER_CALLBACK
 };
 
 export default routes;
