@@ -12,7 +12,7 @@
         }
         .video__author {
             a {
-                color: #3498db;
+                color: $dark-red;
                 font-weight: 700;
             }
         }
@@ -35,8 +35,29 @@
     }
     .video__comments {
         margin-top: 25px;
+        text-align: center;
         .video__comment-number {
-            font-size: 18px;
+            font-size: 16px;
+        }
+        .add__comment {
+            margin-top: 25px;
+            width: 100%;
+            input {
+                width: 100%;
+            }
+        }
+        .video__comments-list {
+            margin-top: 25px;
+            li {
+                background-color: $dark-red;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 20px;
+                border-bottom-left-radius: 0px;
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+            }
         }
     }
 }
