@@ -46,6 +46,13 @@
                 width: 100%;
             }
         }
+        p {
+            margin-top: 25px;
+            font-weight: 600;
+            color: $dark-red;
+            border: 1px solid $dark-red;
+            padding: 10px;
+        }
         .video__comments-list {
             margin-top: 25px;
             li {

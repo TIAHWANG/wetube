@@ -28,8 +28,12 @@ block content
                 span.video__comment-number
                     span#jsCommentNumber=video.comments.length 
                     |  comments
-            form.add__comment#jsAddComment
-                input(type="text", placeholder="Add a comment")
+            if loggedUser 
+                form.add__comment#jsAddComment
+                    input(type="text", placeholder="Add a comment" )
+            else
+                a(href=routes.login)
+                    p If you want to add comments, LOGIN first
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
