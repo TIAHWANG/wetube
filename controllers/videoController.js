@@ -110,7 +110,7 @@ export const deleteVideo = async (req, res) => {
     } = req;
     try {
         const video = await Video.findById(id);
-        if (video.creator !== req.user.id) {
+        if (String(video.creator) !== req.user.id) {
             throw Error();
         } else {
             await Video.findOneAndRemove({ _id: id });
@@ -140,7 +140,6 @@ export const postRegisterView = async (req, res) => {
 };
 
 // Add Comment
-
 export const postAddComment = async (req, res) => {
     const {
         params: { id },
@@ -151,7 +150,7 @@ export const postAddComment = async (req, res) => {
         const video = await Video.findById(id);
         const newComment = await Comment.create({
             text: comment,
-            creater: user.id
+            creator: user.id
         });
         video.comments.push(newComment.id);
         video.save();
