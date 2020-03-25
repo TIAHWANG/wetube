@@ -16,7 +16,7 @@ passport.use(
             clientID: process.env.GH_ID,
             clientSecret: process.env.GH_SECRET,
             callbackURL: process.env.PRODUCTION
-                ? `https://still-fortress-96739.herokuapp.com${routes.githubCallback}`
+                ? `https://still-fortress-96739.herokuapp.com/auth/github/callback`
                 : `http://localhost:4000${routes.githubCallback}`
         },
         githubLoginCallback
