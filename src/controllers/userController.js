@@ -107,7 +107,7 @@ export const postNaverLogin = (req, res) => res.redirect(routes.home);
 
 // Logout
 export const logout = (req, res) => {
-    req.flase("info", "Logged out. See you later");
+    req.flash("info", "Logged out. See you later");
     req.logout();
     res.redirect(routes.home);
 };
