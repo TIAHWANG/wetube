@@ -28,7 +28,9 @@ passport.use(
         {
             clientID: process.env.NAVER_ID,
             clientSecret: process.env.NAVER_SECRET,
-            callbackURL: `http://localhost:4000${routes.naverCallback}`
+            callbackURL: process.env.PRODUCTION
+                ? `https://still-fortress-96739.herokuapp.com/auth/naver/callback`
+                : `http://localhost:4000${routes.naverCallback}`
         },
         naverLoginCallback
     )
