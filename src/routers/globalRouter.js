@@ -10,9 +10,7 @@ import {
     postLogin,
     githubLogin,
     postGithubLogin,
-    getMe,
-    naverLogin,
-    postNaverLogin
+    getMe
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
 
@@ -44,17 +42,6 @@ globalRouter.get(
         successFlash: "Welcome"
     }),
     postGithubLogin
-);
-
-// Naver
-globalRouter.get(routes.naver, naverLogin);
-globalRouter.get(
-    routes.naverCallback,
-    passport.authenticate("naver", {
-        failureRedirect: routes.login,
-        successFlash: "Welcome"
-    }),
-    postNaverLogin
 );
 
 // Me

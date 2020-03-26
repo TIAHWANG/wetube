@@ -74,37 +74,6 @@ export const postGithubLogin = (req, res) => {
     res.redirect(routes.home);
 };
 
-// Naver Login
-export const naverLogin = passport.authenticate("naver", {
-    successFlash: "Welcome",
-    failureFlash: "Can't log in at this time"
-});
-
-export const naverLoginCallback = async (_, __, profile, done) => {
-    const {
-        _json: { id, nickname: name, profile_image: avatarUrl, email }
-    } = profile;
-    try {
-        const user = await User.findOne({ email });
-        if (user) {
-            user.naverId = id;
-            user.save();
-            return done(null, user);
-        }
-        const newUser = await User.create({
-            naverId: id,
-            email,
-            name,
-            avatarUrl
-        });
-        return done(null, newUser);
-    } catch (error) {
-        return done(error);
-    }
-};
-
-export const postNaverLogin = (req, res) => res.redirect(routes.home);
-
 // Logout
 export const logout = (req, res) => {
     req.flash("info", "Logged out. See you later");
