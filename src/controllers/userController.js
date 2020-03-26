@@ -12,7 +12,7 @@ export const postJoin = async (req, res, next) => {
         body: { name, email, password, password2 }
     } = req;
     if (password !== password2) {
-        req.flash("error", "passwords dont match");
+        req.flash("error", "passwords don't match");
         res.status(400);
         res.render("join", { pageTitle: "Join" });
     } else {
@@ -71,6 +71,40 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
 };
 
 export const postGithubLogin = (req, res) => {
+    res.redirect(routes.home);
+};
+
+// Google Login
+export const googleLogin = passport.authenticate("google", {
+    scope: ["email", "profile"],
+    successFlash: "Welcome",
+    failureFlash: "Can't log in at this time"
+});
+
+export const googleLoginCallback = async (_, __, profile, cb) => {
+    const {
+        _json: { sub: id, name, picture: avatarUrl, email }
+    } = profile;
+    try {
+        const user = await User.findOne({ email });
+        if (user) {
+            user.googleId = id;
+            user.save();
+            return cb(null, user);
+        }
+        const newUser = await User.create({
+            email,
+            name,
+            id,
+            avatarUrl
+        });
+        return cb(null, newUser);
+    } catch (error) {
+        return cb(error);
+    }
+};
+
+export const postGoogleLogin = (req, res) => {
     res.redirect(routes.home);
 };
 
