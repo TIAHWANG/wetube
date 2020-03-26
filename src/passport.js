@@ -16,7 +16,7 @@ passport.use(
             clientID: process.env.GH_ID,
             clientSecret: process.env.GH_SECRET,
             callbackURL: process.env.PRODUCTION
-                ? `https://still-fortress-96739.herokuapp.com/auth/github/callback`
+                ? `https://fierce-island-93575.herokuapp.com/auth/github/callback`
                 : `http://localhost:4000${routes.githubCallback}`
         },
         githubLoginCallback
@@ -29,7 +29,7 @@ passport.use(
             clientID: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
             callbackURL: process.env.PRODUCTION
-                ? `https://still-fortress-96739.herokuapp.com/auth/google/callback`
+                ? `https://fierce-island-93575.herokuapp.com/auth/google/callback`
                 : `http://localhost:4000${routes.googleCallback}`
         },
         googleLoginCallback
