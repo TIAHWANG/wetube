@@ -30,7 +30,7 @@ block content
                     |  comments
             if loggedUser 
                 form.add__comment#jsAddComment
-                    input(type="text", placeholder="Add a comment" )
+                    input(type="text", placeholder="Add a comment" maxlength="20")
             else
                 a(href=routes.login)
                     p If you want to add comments, LOGIN first
