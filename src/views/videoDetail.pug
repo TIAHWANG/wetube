@@ -36,5 +36,9 @@ block content
                     p If you want to add comments, LOGIN first
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
-                    li
-                        span=comment.text 
+                    li.comment__container
+                        .comment__column
+                            span.comments__name=comment.creator.name
+                            |: 
+                        .comment__column
+                            span.comments__text=comment.text 
