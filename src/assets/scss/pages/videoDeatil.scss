@@ -54,15 +54,22 @@
             padding: 10px;
         }
         .video__comments-list {
-            width: 420px;
+            width: 100%;
+            max-width: 420px;
             margin: 50px 0;
             text-align: left;
+            li:hover {
+                .comments__delete {
+                    opacity: 1;
+                }
+            }
             li:not(:last-child) {
                 margin-bottom: 35px;
             }
             .comment__container {
                 display: grid;
                 grid-template-columns: 20% 80%;
+                position: relative;
                 .comments__name {
                     font-size: 12px;
                     font-weight: 600;
@@ -75,6 +82,13 @@
                     padding: 10px;
                     border-radius: 20px;
                     border-bottom-left-radius: 0px;
+                }
+                .comments__delete {
+                    position: absolute;
+                    right: 0px;
+                    opacity: 0;
+                    transition: opacity 0.3s linear;
+                    cursor: pointer;
                 }
             }
         }

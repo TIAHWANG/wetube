@@ -42,3 +42,5 @@ block content
                             |: 
                         .comment__column
                             span.comments__text=comment.text 
+                            if loggedUser && comment.creator.id === loggedUser.id
+                                span.comments__delete(data-delete=comment._id) ❌
